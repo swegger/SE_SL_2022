@@ -124,6 +124,7 @@ with SIGMA being the standard deviation of the noise in the gain process (e.g. 0
 ## General use
 ### Behavioral analysis
 *Extraction of raw data*
+
 Also provided is the raw data as collected using Maestro (Lisberger Lab software; https://sites.google.com/a/srscicomp.com/maestro/home). To extract the data from these files, open MATLAB and run the following code:
 
     ```
@@ -151,10 +152,12 @@ directory
 *Note, if directory/data/sname1/MultiSizePursuit.mat exists, SetupSmoothPursuitProject will load that data and then check if more data needs to be extracted.
 
 *Analysis of data*
+
 Data and analysis and model fitting are all performed by the function gainNoiseMultiSize. A variety of options are available to the user. Please see the execution of analysis in GainNoiseModelBehavior for example inputs to gainNoiseMultiSize
 
 ### Behavioral modeling
 *Simulation of candidate behavioral models*
+
 As part of our exploration of simple behavioral models that might be able to explain the observed data, we developed a tool for simulating behavior. To verify our model fits, we also developed methods for testing the fit of candidate models to the simulated behavior. The function TestGainNoiseFitting does most of the heavy lifting. Below we will give a couple examples of how to use the function.
 
 To simulate the simple gain noise model, from the command line in MATLAB simply type:
