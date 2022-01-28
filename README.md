@@ -154,9 +154,9 @@ where `PARAMETER_SWEEP_DIR` is the directory that contains the results of the pa
 
 Also provided is the raw data as collected using Maestro (Lisberger Lab software; https://sites.google.com/a/srscicomp.com/maestro/home). To extract the data from these files, open MATLAB and run the following code:
 
-    ```
-    d = SetupSmoothPursuitProject(sname,'MultiSizePursuit',directory)
-    ```
+  ```
+  d = SetupSmoothPursuitProject(sname,'MultiSizePursuit',directory)
+  ```
 
 with `sname` corresponding to the name of the monkey that one wishes to recover the data for and `directory` corresponding to that contains all the relevant data and code.
 
@@ -189,9 +189,9 @@ As part of our exploration of simple behavioral models that might be able to exp
 
 To simulate the simple gain noise model, from the command line in MATLAB simply type:
 
-    ```
-    TestGainNoiseFitting('sigma',SIGMA,'gains',GAINS)
-    ```
+  ```
+  TestGainNoiseFitting('sigma',SIGMA,'gains',GAINS)
+  ```
 
 This will simulate the model with the mean gain levels specified in GAINS and the standard deviation of gain noise specified by SIGMA.
 
@@ -199,28 +199,28 @@ To simulate a different model, one must specify the model parameters. See instru
 
 To fit a model to the simulated data, one must specify the fit parameters. For example, to simulate the BLS model and fit the BLS model to the data one should specify the model parameters as:
 
-    ```
-    modelparams.variant='BLS';
-    modelparams.method.type = 'quad';
-    modelparams.method.dx=1;
-    modelparams.smin = 0.1;
-    modelparams.smax = 20;
-    modelparams.b = 0;
-    ```
+  ```
+  modelparams.variant='BLS';
+  modelparams.method.type = 'quad';
+  modelparams.method.dx=1;
+  modelparams.smin = 0.1;
+  modelparams.smax = 20;
+  modelparams.b = 0;
+  ```
 
 and the fit parameters as:
 
-    ```
-    fitparams.variant = 'BLS';
-    fitparams.smin = 0.1;
-    fitparams.smax = 20;
-    ```
+  ```
+  fitparams.variant = 'BLS';
+  fitparams.smin = 0.1;
+  fitparams.smax = 20;
+  ```
 
 and then run:
 
-    ```
-    TestGainNoiseFitting('modelparams',modelparams,'gains',GAINS,'sigma',SIGMA,'fitparams',fitparams);
-    ```
+  ```
+  TestGainNoiseFitting('modelparams',modelparams,'gains',GAINS,'sigma',SIGMA,'fitparams',fitparams);
+  ```
 
 *Note: the code is designed to allow for the simulated model to be different than the fit model for testing of model identifiability.
 
@@ -233,11 +233,11 @@ The basic idea is to generate a population of MT neurons and their responses to 
 
 To set up an experiment, the first step is to define the tuning properties of the population. To set up the range of preferred directions, direction tuning amplitudes, and direction tuning widths, set:
 
-    ```
-    thetaTuning.range = [-180,180,1800];
-    thetaTuning.amplitudeRange = [20,200,1000];
-    thetaTuning.widthRange = [20,90,1000];
-    ```
+  ```
+  thetaTuning.range = [-180,180,1800];
+  thetaTuning.amplitudeRange = [20,200,1000];
+  thetaTuning.widthRange = [20,90,1000];
+  ```
 
 Each trio specifies the `[MIN,MAX,NUMBER]` of values to sample from. For example, `thetaTuning.range = [-180,180,1800]` creates 1800 different preferred directions, linearly spaced between -180 and 180 deg. Similarly, to set up the range of preferred log_2(speeds), speed tuning amplitudes, and speed tuning widths, set:
 
@@ -250,10 +250,10 @@ Each trio specifies the `[MIN,MAX,NUMBER]` of values to sample from. For example
 
 Then supply the ranges to `NeuralModel` like this:
 
-    ```
-    NeuralModel('thetas',0,'speeds',4:4:20,'gainNoise',0.4,...
-            'theta',thetaTuning,'speed',speedTuning,'N',1280)
-    ```
+  ```
+  NeuralModel('thetas',0,'speeds',4:4:20,'gainNoise',0.4,...
+          'theta',thetaTuning,'speed',speedTuning,'N',1280)
+  ```
 
 This will simulate the response of a population of N = 1280 MT neurons to each of the 3 sizes used in the paper (2, 6, and 20 deg), moving in the 0 deg direction at 4, 8, 12, 16, and 20 deg/s.
 
@@ -261,12 +261,12 @@ This will simulate the response of a population of N = 1280 MT neurons to each o
 
 In the paper, we present analysis of the effect of the number of MT neurons on the ciruit's behavior. We have provided a wrapper function which will do so. Simply enter the following into the MATLAB command line:
 
-    ```
-    saveOpts.On = true;
-    saveOpts.Figs = false;
-    saveOpts.locationBase = 'DESIRED_SAVE_LOCATION';
-    gainNoiseNeuralModelsweepN('saveOpts',saveOpts)
-    ```
+  ```
+  saveOpts.On = true;
+  saveOpts.Figs = false;
+  saveOpts.locationBase = 'DESIRED_SAVE_LOCATION';
+  gainNoiseNeuralModelsweepN('saveOpts',saveOpts)
+  ```
 
 This is simulate populations of 20, 40, 80, 160, 320, 640, 1280, 2560, 5120, and 10240 MT neurons, as implemented in the main paper, with and without gain noise. The output of each number of neurons and gain noise condition with be saved to the directory `DESIRED_SAVE_LOCATION` (see code for details). The corresponding results can then be analyzed using `CircuitN_vs_behavioralCorrelation` as for Supplementary Figure 6 above, with the correct base file names.
 
@@ -274,8 +274,8 @@ This is simulate populations of 20, 40, 80, 160, 320, 640, 1280, 2560, 5120, and
 
 In the paper, we also iterate 729 different parameterizations of the threshold nonlinearities and surround properties of the model neurons. Because the computational cost is prohibitive on a single computer, we recommend the user implements the code in a parallel fashion on a computation cluster. Here we provide example code that will set up a grid of parameter realizations and then run one instance from this list, instance `simi`.
 
-    ```
-    [ws,sigGs,Gs] = gainNoiseNeuralModelParameterSweeps_cluster(simi,'surround_weights',SURROUND_WEIGHTS,'thresholds',THRESHOLDS,'exponentials',EXPONENTIALS)
-    ```
+  ```
+  [ws,sigGs,Gs] = gainNoiseNeuralModelParameterSweeps_cluster(simi,'surround_weights',SURROUND_WEIGHTS,'thresholds',THRESHOLDS,'exponentials',EXPONENTIALS)
+  ```
 
 This will run the circuit model as in the main paper, but with parameters chosen from the `simi`th entry of a list made up of every possible combination of parameters in `SURROUND_WEIGHTS`, `THRESHOLDS`, and `EXPONENTIALS`. After the user has run this for every possible `simi`, the results of every parameterization can then be analyzed as for Supplementary Figure 5 using `gainNoiseNeuralModelParameterSweep_analysis`.
