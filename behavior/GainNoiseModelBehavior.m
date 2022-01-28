@@ -27,7 +27,7 @@ d = load('Reggie_MultiSizePursuit.mat');
     'speeds',speeds,'plotType','fyp');
 
 %% Perform core analysis in multiple analysis time windows
-anWins(:,1) = linspace(90,190,6);
+anWins(:,1) = linspace(110,190,5);
 anWins(:,2) = anWins(:,1)+20;
 for i = 1:size(anWins,1)
     [wSDNs(i,:), sigGs(i,:), GainsS(:,:,:,i), w_standards(:,:,i)] = gainNoiseMultiSize(d,'runs',runs,'analysisWin',anWins(i,:),...
@@ -82,8 +82,7 @@ d = load('Xtra_MultiSizePursuit.mat');
     'speeds',speeds,'plotType','fyp');
 
 %% Perform core analysis in multiple analysis time windows
-% anWins(:,1) = linspace(80,180,6);
-anWins(:,1) = linspace(90,190,6);
+anWins(:,1) = linspace(110,190,5);
 anWins(:,2) = anWins(:,1)+20;
 for i = 1:size(anWins,1)
     [wSDNs(i,:), sigGs(i,:), GainsS(:,:,:,i), w_standards(:,:,i)] = gainNoiseMultiSize(d,'runs',runs,'analysisWin',anWins(i,:),...
@@ -94,7 +93,6 @@ for i = 1:size(anWins,1)
         'speeds',speeds);
 end
 
-%%
 figure
 colors = [0 1 0; 1 0 0; 0 0 0];
 symbols = {'^-','o-','o-'};
