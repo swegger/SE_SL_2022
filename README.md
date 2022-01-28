@@ -5,11 +5,13 @@ We have included our full set of analysis, behavioral modeling, and circuit simu
 
 To recreate the results, the user needs the follwing data sets, unzipped and in the current MATLAB directory:
 1. Behavioral
-  a) Reggie_MultiSizePursuit.mat
-  b) Xtra_MultiSizePursuit.mat
+    1. Reggie_MultiSizePursuit.mat
+    2. Xtra_MultiSizePursuit.mat
+
 2. Biomimetic circuit
-  a) parameterSweep.zip
-  b) circuitN.zip
+    1. parameterSweep.zip
+    2. circuitN.zip
+
 
 System requirements: MATLAB R2020b
 Tested on: Ubuntu 20.04; OSX 10.15.7
@@ -18,11 +20,11 @@ Tested on: Ubuntu 20.04; OSX 10.15.7
 ### Figure 1
 1. Use the script "GainNoiseModelBehavior.m"
 2. For monkey R
-  1. Run the code under "Reggie" to set up analysis parameters (line 1)
-  2. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
+    1. Run the code under "Reggie" to set up analysis parameters (line 1)
+    2. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
 3. For monkey X
-  1. Run the code under "Xtra" (line 64)
-  2. Run the code under "Main analysis" (line 76)
+    1. Run the code under "Xtra" (line 64)
+    2. Run the code under "Main analysis" (line 76)
 4. For bootstrap analysis, change "Ncv" to the number of desired bootstraps. (Warning, bootstrapping is implemented serially. Large values of Ncv will take a long time to complete)
 
 ### Figure 2
@@ -64,20 +66,22 @@ plotTuningProperties('N1280_g*log2shat_gainNoiseOn_20210602.mat')
 ### Supplementary Figure 1
 1. Use the script "GainNoiseModelBehavior.m"
 2. For monkey R
-  1. Run the code under "Reggie" to set up analysis parameters (line 1)
-  2. Run code under "Main analysis w/ eccentricity threshold" to plot results of behavioral analysis (line 25)
+    1. Run the code under "Reggie" to set up analysis parameters (line 1)
+    2. Run code under "Main analysis w/ eccentricity threshold" to plot results of behavioral analysis (line 25)
+
 3. For monkey X
-  1. Run the code under "Xtra" (line 64)
-  2. Run the code under "Main analysis w/ eccentricity threshold" (line 84)
+    1. Run the code under "Xtra" (line 64)
+    2. Run the code under "Main analysis w/ eccentricity threshold" (line 84)
 
 ### Supplementary Figure 2
 1. Use the script "GainNoiseModelBehavior.m"
 2. For monkey R
-  1. Run the code under "Reggie" to set up analysis parameters (line 1)
-  2. Run code under "Perform core analysis in multiple analysis time windows" (line 33)
+    1. Run the code under "Reggie" to set up analysis parameters (line 1)
+    2. Run code under "Perform core analysis in multiple analysis time windows" (line 33)
+
 3. For monkey X
-  1. Run the code under "Xtra" (line 64)
-  2. Run the code under "Perform core analysis in multiple analysis time windows" (line 92)
+    1. Run the code under "Xtra" (line 64)
+    2. Run the code under "Perform core analysis in multiple analysis time windows" (line 92)
 
 ### Supplementary Figure 3
 1. At the MATLAB command line, run
@@ -97,11 +101,12 @@ plotTuningProperties('N1280_g*log2shat_gainNoiseOn_20210602.mat')
 ### Supplementary Figure 4
 1. Use the script "GainNoiseModelBehavior.m"
 2. For monkey R
-  1. Run the code under "Reggie" to set up analysis parameters (line 1)
-  2. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
+    1. Run the code under "Reggie" to set up analysis parameters (line 1)
+    2. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
+
 3. For monkey X
-  1. Run the code under "Xtra" (line 64)
-  2. Run the code under "Main analysis" (line 76)
+    1. Run the code under "Xtra" (line 64)
+    2. Run the code under "Main analysis" (line 76)
 
 ### Supplementary Figure 5
 1. At the MATLAB command line, run
@@ -121,26 +126,27 @@ where `PARAMETER_SWEEP_DIR` is the directory that contains the results of the pa
 ### Supplementary Table 1
 1. 1. Use the script "GainNoiseModelBehavior.m"
 2. For monkey R
-  1. In the code under "Reggie" (line 1), change set the option 'saveTable' to `saveTable` defined as
+    1. In the code under "Reggie" (line 1), change set the option 'saveTable' to `saveTable` defined as
 
-      ```
-      saveTable.On = true
-      saveTable.directory = DESIRED_SAVE_LOCATION      
-      ```      
-  2. Run the code under "Reggie" to set up analysis parameters (line 1)
-  3. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
-  4. Results are saved as a LaTeX table in "R_tableYYYYMMDD.tex" in DESIRED_SAVE_LOCATION with YYYY being the year, MM being the month, and DD being the day of the month code was executed.
+        ```
+        saveTable.On = true
+        saveTable.directory = DESIRED_SAVE_LOCATION      
+        ```      
+      2. Run the code under "Reggie" to set up analysis parameters (line 1)
+      3. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
+      4. Results are saved as a LaTeX table in "R_tableYYYYMMDD.tex" in DESIRED_SAVE_LOCATION with YYYY being the year, MM being the month, and DD being the day of the month code was executed.
+
 3. For monkey X
-  1. In the code under "Xtra" (line 64), change set `saveTable` to
+    1. In the code under "Xtra" (line 64), change set `saveTable` to
 
-      ```
-      saveTable.On = true
-      saveTable.directory = DESIRED_SAVE_LOCATION
-      ```
+        ```
+        saveTable.On = true
+        saveTable.directory = DESIRED_SAVE_LOCATION
+        ```
 
-  2. Run the code under "Xtra" (line 64)
-  3. Run the code under "Main analysis" (line 76)
-  4. Results are saved as a LaTeX table in "X_tableYYYYMMDD.tex" in DESIRED_SAVE_LOCATION with YYYY being the year, MM being the month, and DD being the day of the month code was executed.
+    2. Run the code under "Xtra" (line 64)
+    3. Run the code under "Main analysis" (line 76)
+    4. Results are saved as a LaTeX table in "X_tableYYYYMMDD.tex" in DESIRED_SAVE_LOCATION with YYYY being the year, MM being the month, and DD being the day of the month code was executed.
 
 ## General use
 ### Behavioral analysis
