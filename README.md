@@ -272,7 +272,7 @@ This is simulate populations of 20, 40, 80, 160, 320, 640, 1280, 2560, 5120, and
 
 *Iterate MT neuron parameterization*
 
-In the paper, we also iterate 729 different parameterizations of the threshold nonlinearities and surround properties of the model neurons. Because the computational cost is prohibitive on a single computer, we recommend the user implements the code in a parallel fashion on a computation cluster. Here we provide example code that will set up a grid of parameter realizations and then run one instance from this list, instance `simi`.
+In the paper, we also iterate 729 different parameterizations of the threshold nonlinearities and surround properties of the model neurons. Because the computational cost is prohibitive on a single computer, we recommend the user implements the code in a parallel fashion on a computation cluster. We provide code that will set up a grid of parameter realizations and then run one instance from this list, instance `simi`.
 
   ```
   [ws,sigGs,Gs] = gainNoiseNeuralModelParameterSweeps_cluster(simi,'surround_weights',SURROUND_WEIGHTS,'thresholds',THRESHOLDS,'exponentials',EXPONENTIALS)

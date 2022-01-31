@@ -464,7 +464,6 @@ function tuning = tuningFunctions(N,theta,speed,Cov,n0,sizeProps)
     tuning.size.x = eccentricities.*cos(rhos);
     tuning.size.y = eccentricities.*sin(rhos);
     tuning.size.radius = (0.69*eccentricities+1)/sqrt(pi); % Raduis approixmation from Ferrera and Lisberger (1997)
-    %tuning.size.radius = sqrt(eccentricities);     % Approximate radius is square root of eccentricity
     if isfield(sizeProps,'threshold')
         tuning.size.threshold = sizeProps.threshold.*ones(N,1);
     else
