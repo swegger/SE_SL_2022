@@ -3,7 +3,7 @@ Instructions for use of code to implement data analysis and circuit results as p
 
 We have included our full set of analysis, behavioral modeling, and circuit simulation tools for the user. As such, we provide some general use instructions. However, our main objective here is to provide the user with code to recreate the results from Egger and Lisberger (2022), and the associated scripts/functions are illustrative for running the code in general.
 
-To recreate the results, the user needs the follwing data sets, unzipped and in the current MATLAB directory:
+To recreate the results, the user needs the follwing data sets, unzipped and in the current MATLAB path:
 1. Behavioral
     1. Reggie_MultiSizePursuit.mat
     2. Xtra_MultiSizePursuit.mat
@@ -21,10 +21,10 @@ Tested on: Ubuntu 20.04; OSX 10.15.7
 1. Use the script `GainNoiseModelBehavior`
 2. For monkey R
     1. Run the code under "Reggie" to set up analysis parameters (line 1)
-    2. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
+    2. Run code under "Main analysis" to plot results of behavioral analysis (line 13)
 3. For monkey X
-    1. Run the code under "Xtra" (line 64)
-    2. Run the code under "Main analysis" (line 76)
+    1. Run the code under "Xtra" (line 56)
+    2. Run the code under "Main analysis" (line 68)
 4. For bootstrap analysis, change "Ncv" to the number of desired bootstraps. (Warning, bootstrapping is implemented serially. Large values of Ncv will take a long time to complete)
 
 ### Figure 2
@@ -33,7 +33,7 @@ Tested on: Ubuntu 20.04; OSX 10.15.7
 ### Figure 3
 For behavioral results:
 1. Using the script `GainNoiseModelBehavior`, run code for monkeys R and X as in Figure 1
-2. Run code under "Gain noise w vs standard model w" (line 120)
+2. Run code under "Gain noise w vs standard model w" (line 110)
 
 For theoretical results:
 1. At the MATLAB command line, run
@@ -67,21 +67,21 @@ plotTuningProperties('N1280_g*log2shat_gainNoiseOn_20210602.mat')
 1. Use the script `GainNoiseModelBehavior`
 2. For monkey R
     1. Run the code under "Reggie" to set up analysis parameters (line 1)
-    2. Run code under "Main analysis w/ eccentricity threshold" to plot results of behavioral analysis (line 25)
+    2. Run code under "Main analysis w/ eccentricity threshold" to plot results of behavioral analysis (line 21)
 
 3. For monkey X
-    1. Run the code under "Xtra" (line 64)
-    2. Run the code under "Main analysis w/ eccentricity threshold" (line 84)
+    1. Run the code under "Xtra" (line 56)
+    2. Run the code under "Main analysis w/ eccentricity threshold" (line 76)
 
 ### Supplementary Figure 2
 1. Use the script `GainNoiseModelBehavior`
 2. For monkey R
     1. Run the code under "Reggie" to set up analysis parameters (line 1)
-    2. Run code under "Perform core analysis in multiple analysis time windows" (line 33)
+    2. Run code under "Perform core analysis in multiple analysis time windows" (line 29)
 
 3. For monkey X
-    1. Run the code under "Xtra" (line 64)
-    2. Run the code under "Perform core analysis in multiple analysis time windows" (line 92)
+    1. Run the code under "Xtra" (line 56)
+    2. Run the code under "Perform core analysis in multiple analysis time windows" (line 84)
 
 ### Supplementary Figure 3
 1. At the MATLAB command line, run
@@ -102,11 +102,11 @@ plotTuningProperties('N1280_g*log2shat_gainNoiseOn_20210602.mat')
 1. Use the script `GainNoiseModelBehavior`
 2. For monkey R
     1. Run the code under "Reggie" to set up analysis parameters (line 1)
-    2. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
+    2. Run code under "Main analysis" to plot results of behavioral analysis (line 13)
 
 3. For monkey X
-    1. Run the code under "Xtra" (line 64)
-    2. Run the code under "Main analysis" (line 76)
+    1. Run the code under "Xtra" (line 56)
+    2. Run the code under "Main analysis" (line 68)
 
 ### Supplementary Figure 5
 1. At the MATLAB command line, run
@@ -133,7 +133,7 @@ where `PARAMETER_SWEEP_DIR` is the directory that contains the results of the pa
         saveTable.directory = DESIRED_SAVE_LOCATION      
         ```      
       2. Run the code under "Reggie" to set up analysis parameters (line 1)
-      3. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
+      3. Run code under "Main analysis" to plot results of behavioral analysis (line 13)
       4. Results are saved as a LaTeX table in "R_tableYYYYMMDD.tex" in DESIRED_SAVE_LOCATION with YYYY being the year, MM being the month, and DD being the day of the month code was executed.
 
 3. For monkey X
@@ -144,8 +144,8 @@ where `PARAMETER_SWEEP_DIR` is the directory that contains the results of the pa
         saveTable.directory = DESIRED_SAVE_LOCATION
         ```
 
-    2. Run the code under "Xtra" (line 64)
-    3. Run the code under "Main analysis" (line 76)
+    2. Run the code under "Xtra" (line 56)
+    3. Run the code under "Main analysis" (line 68)
     4. Results are saved as a LaTeX table in "X_tableYYYYMMDD.tex" in DESIRED_SAVE_LOCATION with YYYY being the year, MM being the month, and DD being the day of the month code was executed.
 
 ## General use
@@ -176,7 +176,7 @@ directory
 
 ```
 
-*Note, if directory/data/sname/MultiSizePursuit.mat exists, `SetupSmoothPursuitProject` will load that data and then check if more data needs to be extracted.
+*Note, if directory/data/sname/MultiSizePursuit.mat exists, `SetupSmoothPursuitProject` will load that data and then check if more data needs to be extracted. Data collected on a given day should be contained in one `raw_data_folder` and data collected on different days should be sorted into different folders.
 
 *Analysis of data*
 
@@ -225,7 +225,7 @@ and then run:
 *Note: the code is designed to allow for the simulated model to be different than the fit model for testing of model identifiability.
 
 ### Biomimetic circuit modeling
-The code for recreating the biomimetic circuit results from the paper used above load results from runs of the model previously. Below provides a brief instructions to implementation of the circuit, mostly by way of demonstrating how to implement the circuit used in the main text of Egger and Lisberger (2022).
+The code for recreating the biomimetic circuit results from the paper used above load results from runs of the model previously. Below we provide brief instructions to implement the circuit, mostly by way of demonstrating how to implement the circuit used in the main text of Egger and Lisberger (2022).
 
 *Circuit basics*
 
@@ -245,7 +245,6 @@ Each trio specifies the `[MIN,MAX,NUMBER]` of values to sample from. For example
   speedTuning.range = [-1,8,1000];
   speedTuning.amplitudeRange = [1,20,1000];
   speedTuning.widthRange = [0.64,2.8,1000];
-  speedTuning.d = 0.1;
   ```
 
 Then supply the ranges to `NeuralModel` like this:
@@ -272,7 +271,7 @@ This is simulate populations of 20, 40, 80, 160, 320, 640, 1280, 2560, 5120, and
 
 *Iterate MT neuron parameterization*
 
-In the paper, we also iterate 729 different parameterizations of the threshold nonlinearities and surround properties of the model neurons. Because the computational cost is prohibitive on a single computer, we recommend the user implements the code in a parallel fashion on a computation cluster. We provide a wrapper function that will set up a grid of parameter realizations and then run one instance from this list, instance `simi`.
+In the paper, we also iterate 729 different parameterizations of the threshold nonlinearities and surround properties of the model neurons. Because the computational cost is prohibitive on a single computer, we recommend the user implements the code in a parallel fashion on a computational cluster. We provide a wrapper function that will set up a grid of parameter realizations and then run one instance from this list, instance `simi`.
 
   ```
   [ws,sigGs,Gs] = gainNoiseNeuralModelParameterSweeps_cluster(simi,'surround_weights',SURROUND_WEIGHTS,'thresholds',THRESHOLDS,'exponentials',EXPONENTIALS)
