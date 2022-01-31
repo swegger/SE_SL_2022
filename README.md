@@ -18,7 +18,7 @@ Tested on: Ubuntu 20.04; OSX 10.15.7
 
 ## Recreation of results
 ### Figure 1
-1. Use the script "GainNoiseModelBehavior.m"
+1. Use the script `GainNoiseModelBehavior`
 2. For monkey R
     1. Run the code under "Reggie" to set up analysis parameters (line 1)
     2. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
@@ -28,11 +28,11 @@ Tested on: Ubuntu 20.04; OSX 10.15.7
 4. For bootstrap analysis, change "Ncv" to the number of desired bootstraps. (Warning, bootstrapping is implemented serially. Large values of Ncv will take a long time to complete)
 
 ### Figure 2
-1. Use the script "GainNoiseModelBehavior" as for Figure 1.
+1. Use the script `GainNoiseModelBehavior` as for Figure 1.
 
 ### Figure 3
 For behavioral results:
-1. Using the script "GainNoiseModelBehavior.m," run code for monkeys R and X as in Figure 1
+1. Using the script `GainNoiseModelBehavior`, run code for monkeys R and X as in Figure 1
 2. Run code under "Gain noise w vs standard model w" (line 120)
 
 For theoretical results:
@@ -64,7 +64,7 @@ plotTuningProperties('N1280_g*log2shat_gainNoiseOn_20210602.mat')
 ```
 
 ### Supplementary Figure 1
-1. Use the script "GainNoiseModelBehavior.m"
+1. Use the script `GainNoiseModelBehavior`
 2. For monkey R
     1. Run the code under "Reggie" to set up analysis parameters (line 1)
     2. Run code under "Main analysis w/ eccentricity threshold" to plot results of behavioral analysis (line 25)
@@ -74,7 +74,7 @@ plotTuningProperties('N1280_g*log2shat_gainNoiseOn_20210602.mat')
     2. Run the code under "Main analysis w/ eccentricity threshold" (line 84)
 
 ### Supplementary Figure 2
-1. Use the script "GainNoiseModelBehavior.m"
+1. Use the script `GainNoiseModelBehavior`
 2. For monkey R
     1. Run the code under "Reggie" to set up analysis parameters (line 1)
     2. Run code under "Perform core analysis in multiple analysis time windows" (line 33)
@@ -99,7 +99,7 @@ plotTuningProperties('N1280_g*log2shat_gainNoiseOn_20210602.mat')
   with SIGMA being the standard deviation of the noise in the gain process (e.g. 0.01 or 0 for panels c and d, respectively).
 
 ### Supplementary Figure 4
-1. Use the script "GainNoiseModelBehavior.m"
+1. Use the script `GainNoiseModelBehavior`
 2. For monkey R
     1. Run the code under "Reggie" to set up analysis parameters (line 1)
     2. Run code under "Main analysis" to plot results of behavioral analysis (line 17)
@@ -124,7 +124,7 @@ where `PARAMETER_SWEEP_DIR` is the directory that contains the results of the pa
     ```
 
 ### Supplementary Table 1
-1. 1. Use the script "GainNoiseModelBehavior.m"
+1. 1. Use the script `GainNoiseModelBehavior`
 2. For monkey R
     1. In the code under "Reggie" (line 1), change set the option 'saveTable' to `saveTable` defined as
 
@@ -176,16 +176,16 @@ directory
 
 ```
 
-*Note, if directory/data/sname1/MultiSizePursuit.mat exists, SetupSmoothPursuitProject will load that data and then check if more data needs to be extracted.
+*Note, if directory/data/sname/MultiSizePursuit.mat exists, `SetupSmoothPursuitProject` will load that data and then check if more data needs to be extracted.
 
 *Analysis of data*
 
-Data and analysis and model fitting are all performed by the function gainNoiseMultiSize. A variety of options are available to the user. Please see the execution of analysis in GainNoiseModelBehavior for example inputs to gainNoiseMultiSize
+Data and analysis and model fitting are all performed by the function `gainNoiseMultiSize`. A variety of options are available to the user. Please see the execution of analysis in `GainNoiseModelBehavior` for example inputs to `gainNoiseMultiSize`
 
 ### Behavioral modeling
 *Simulation of candidate behavioral models*
 
-As part of our exploration of simple behavioral models that might be able to explain the observed data, we developed a tool for simulating behavior. To verify our model fits, we also developed methods for testing the fit of candidate models to the simulated behavior. The function TestGainNoiseFitting does most of the heavy lifting. Below we will give a couple examples of how to use the function.
+As part of our exploration of simple behavioral models that might be able to explain the observed data, we developed a tool for simulating behavior. To verify our model fits, we also developed methods for testing the fit of candidate models to the simulated behavior. The function `TestGainNoiseFitting` does most of the heavy lifting. Below we will give a couple examples of how to use the function.
 
 To simulate the simple gain noise model, from the command line in MATLAB simply type:
 
@@ -272,7 +272,7 @@ This is simulate populations of 20, 40, 80, 160, 320, 640, 1280, 2560, 5120, and
 
 *Iterate MT neuron parameterization*
 
-In the paper, we also iterate 729 different parameterizations of the threshold nonlinearities and surround properties of the model neurons. Because the computational cost is prohibitive on a single computer, we recommend the user implements the code in a parallel fashion on a computation cluster. We provide code that will set up a grid of parameter realizations and then run one instance from this list, instance `simi`.
+In the paper, we also iterate 729 different parameterizations of the threshold nonlinearities and surround properties of the model neurons. Because the computational cost is prohibitive on a single computer, we recommend the user implements the code in a parallel fashion on a computation cluster. We provide a wrapper function that will set up a grid of parameter realizations and then run one instance from this list, instance `simi`.
 
   ```
   [ws,sigGs,Gs] = gainNoiseNeuralModelParameterSweeps_cluster(simi,'surround_weights',SURROUND_WEIGHTS,'thresholds',THRESHOLDS,'exponentials',EXPONENTIALS)

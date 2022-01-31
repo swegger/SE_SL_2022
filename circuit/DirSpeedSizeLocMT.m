@@ -367,7 +367,6 @@ tuning.theta.sig = 45;
 tuning.speed.Amp = 10;
 tuning.speed.pref = Ss(:);
 tuning.speed.sig = 1;
-tuning.speed.d = 0.1;
 
 tuning.size.x = 0;
 tuning.size.y = 0;

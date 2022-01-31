@@ -69,7 +69,6 @@ thetaTuning.widthRange = [20,90,1000];
 speedTuning.range = [-1,8,1000];
 speedTuning.amplitudeRange = [1,20,1000];
 speedTuning.widthRange = [0.64,2.8,1000];
-speedTuning.d = 0.1;
 
 % With gain noise
 saveOpts.location = [saveOpts.location(1:end-1) num2str(simi)];

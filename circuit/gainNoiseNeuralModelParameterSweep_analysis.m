@@ -38,7 +38,7 @@ Gs = nan(length(files),3);
 w_standard = nan(length(files),3);
 OPTIONS = optimset('Display','off');
 
-for filei = 182:length(files)
+for filei = 1:length(files)
     disp(['File ' num2str(filei) ' of ' num2str(length(files))])
     results = load(files(filei).name,'sizeProps','w','sigG','G','gainNoise',...
         'VeM','VeVAR','decoderAlgorithm');
