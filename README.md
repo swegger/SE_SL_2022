@@ -3,15 +3,16 @@ Instructions for use of code to implement data analysis and circuit results as p
 
 We have included our full set of analysis, behavioral modeling, and circuit simulation tools for the user. As such, we provide some general use instructions. However, our main objective here is to provide the user with code to recreate the results from Egger and Lisberger (2022), and the associated scripts/functions are illustrative for running the code in general.
 
-To recreate the results, the user needs the follwing data sets, unzipped and in the current MATLAB path:
-1. Behavioral
+To recreate the results, the user should download the following data sets from [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5889167.svg)](https://doi.org/10.5281/zenodo.5889167)
+, and place the unzipped data and in the current MATLAB path:
+1. Behavioral*
     1. Reggie_MultiSizePursuit.mat
     2. Xtra_MultiSizePursuit.mat
 
-2. Biomimetic circuit
-    1. parameterSweep.zip
-    2. circuitN.zip
+2. Biomimetic circuit**
+    1. circuitN.zip
 
+*.mat files contain trial-by-trial data extracted from the original data files. .mat files contain all the data necessary to run behavioral analysis. Raw data files are as recorded on the day of each experiment. Both are contained in monkeyR_data.zip and monkeyX_data.zip.
 
 System requirements: MATLAB R2020b
 Tested on: Ubuntu 20.04; OSX 10.15.7
@@ -109,12 +110,33 @@ plotTuningProperties('N1280_g*log2shat_gainNoiseOn_20210602.mat')
     2. Run the code under "Main analysis" (line 68)
 
 ### Supplementary Figure 5
-1. At the MATLAB command line, run
+Due to the combined size of the 729 different instantiations of the biomimetic circuit used in this figure, it is not possible for us to share the data associated with the original results. To recreate the results requires iterating the model for each combination of parameter values. We have provided a wrapper function that will set up the list of parameterizations used and run one iteration of parameters selected from this list. Here, we provide the necessary code to run one such iteration. It is *highly* recommended that the user deploys the code on a computational cluster such that each iteration can be run in parallel.
+
+1. Set up the save options at the MATLAB command line using:
 
     ```
-    gainNoiseNeuralModelParameterSweep_analysis(PARAMETER_SWEEP_DIR,'calcNeuronPursuitCorrelation',true,'dataDate','20210602','gainNoise',0.4)
+    saveOpts.On = true;
+    saveOpts.location = [DESTINATION_DIRECTORY NAME DATE ID '_0'];
+    saveOpts.Figs = false;
     ```
-where `PARAMETER_SWEEP_DIR` is the directory that contains the results of the parameter sweep analysis.
+
+where `DESTINATION_DIRECTORY` is the desired directory where the results of each iteration of the circuit will be saved, `NAME` specifies a global file name, and `ID` is unique identifier (ID) that can later be used to recover the data associated with this parameter sweep (we recommend inserting the date of creation using `ID = datestr(now,'yyyymmdd')`).
+
+2. Pass the save options to the wrapper function that will build the desired list and execute instance `LISTNUM` of that list using
+
+    ```
+    gainNoiseNeuralModelParameterSweeps_cluster(LISTNUM,'decoderAlgorithm','g*log2shat','N',1280,'saveOpts',saveOpts);
+    ```
+
+This will execute the biomimetic circuit as in the main paper, but with parameters taken from the `LISTNUM`th entry of the list of 729 different parameter combinations. See the General Use section below for details on how to specify the parameterization list. The output will save a file at `saveOpts.location` with `_0` replaced by `_LISTNUM`. To generate all the results, one must run this code for each parameterization of the list (e.g. 1 through 729).
+
+3. Analyze the results using
+
+    ```
+    gainNoiseNeuralModelParameterSweep_analysis(PARAMETER_SWEEP_DIR,'calcNeuronPursuitCorrelation',true,'dataDate',ID,'gainNoise',0.4)
+    ```
+
+where `PARAMETER_SWEEP_DIR` is the directory that contains the results of the parameter sweep analysis from step 2 and `ID` is the unique identifier specified in step 1.
 
 ### Supplementary Figure 6
 1. At the MATLAB command line, run
