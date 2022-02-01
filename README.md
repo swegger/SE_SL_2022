@@ -17,6 +17,9 @@ To recreate the results, the user should download the following data sets from [
 System requirements: MATLAB R2020b
 Tested on: Ubuntu 20.04; OSX 10.15.7
 
+Cite the code: [![DOI](https://zenodo.org/badge/451638024.svg)](https://zenodo.org/badge/latestdoi/451638024)
+
+
 ## Recreation of results
 ### Figure 1
 1. Use the script `GainNoiseModelBehavior`
