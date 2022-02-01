@@ -9,7 +9,7 @@ To recreate the results, the user should download the following data sets from [
     1. Reggie_MultiSizePursuit.mat
     2. Xtra_MultiSizePursuit.mat
 
-2. Biomimetic circuit**
+2. Biomimetic circuit
     1. circuitN.zip
 
 *.mat files contain trial-by-trial data extracted from the original data files. .mat files contain all the data necessary to run behavioral analysis. Raw data files are as recorded on the day of each experiment. Both are contained in monkeyR_data.zip and monkeyX_data.zip.
@@ -110,7 +110,7 @@ plotTuningProperties('N1280_g*log2shat_gainNoiseOn_20210602.mat')
     2. Run the code under "Main analysis" (line 68)
 
 ### Supplementary Figure 5
-Due to the combined size of the 729 different instantiations of the biomimetic circuit used in this figure, it is not possible for us to share the data associated with the original results. To recreate the results requires iterating the model for each combination of parameter values. We have provided a wrapper function that will set up the list of parameterizations used and run one iteration of parameters selected from this list. Here, we provide the necessary code to run one such iteration. It is *highly* recommended that the user deploys the code on a computational cluster such that each iteration can be run in parallel.
+Due to the combined size of the data files associated with the 729 different instantiations of the biomimetic circuit used in this figure, it is not possible for us to share the data associated with the original results. Recreating the results requires iterating the model for each combination of parameter values. We have provided a wrapper function that will set up the list of parameterizations used and run one iteration of parameters selected from this list. Here, we provide the necessary code to run one such iteration. It is *highly* recommended that the user deploys the code on a computational cluster such that each iteration can be run in parallel.
 
 1. Set up the save options at the MATLAB command line using:
 
@@ -133,10 +133,10 @@ This will execute the biomimetic circuit as in the main paper, but with paramete
 3. Analyze the results using
 
     ```
-    gainNoiseNeuralModelParameterSweep_analysis(PARAMETER_SWEEP_DIR,'calcNeuronPursuitCorrelation',true,'dataDate',ID,'gainNoise',0.4)
+    gainNoiseNeuralModelParameterSweep_analysis(DESTINATION_DIRECTORY,'calcNeuronPursuitCorrelation',true,'dataDate',ID,'gainNoise',0.4)
     ```
 
-where `PARAMETER_SWEEP_DIR` is the directory that contains the results of the parameter sweep analysis from step 2 and `ID` is the unique identifier specified in step 1.
+where `DESTINATION_DIRECTORY` is the directory that contains the results of the parameter sweep analysis from step 2 and `ID` is the unique identifier specified in step 1.
 
 ### Supplementary Figure 6
 1. At the MATLAB command line, run
@@ -146,7 +146,7 @@ where `PARAMETER_SWEEP_DIR` is the directory that contains the results of the pa
     ```
 
 ### Supplementary Table 1
-1. 1. Use the script `GainNoiseModelBehavior`
+1. Use the script `GainNoiseModelBehavior`
 2. For monkey R
     1. In the code under "Reggie" (line 1), change set the option 'saveTable' to `saveTable` defined as
 
